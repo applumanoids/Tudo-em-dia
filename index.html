@@ -6,6 +6,10 @@
   <meta name="theme-color" content="#fffaf6">
   <meta name="description" content="Tudo em Dia: seu espaço para organizar contas, compras, metas, desejos e saúde.">
   <title>Tudo em Dia | Lumanoids</title>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="apple-touch-icon" href="./icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Tudo em Dia">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -22,6 +26,7 @@
     .art{height:130px;display:grid;place-items:center;filter:drop-shadow(0 12px 8px rgba(70,40,20,.09))}.art svg{width:100%;max-width:145px;height:130px}.saude .art{height:120px;flex:0 0 40%}.saude .art svg{height:120px}
     .tile-bottom{display:flex;align-items:end;justify-content:space-between;gap:5px;width:100%}.tile h2{font-size:clamp(16px,4vw,24px);font-weight:800;letter-spacing:-.05em;line-height:1.12;margin:0;overflow-wrap:break-word}.arrow{flex:0 0 35px;width:35px;height:35px;border-radius:50%;background:#ff743f;color:white;display:grid;place-items:center;box-shadow:0 3px 9px #ff743f35}.arrow svg{width:22px;height:22px}
     .ribbon{position:absolute;top:17px;right:-32px;transform:rotate(35deg);background:#e56c43;color:white;font-size:9px;letter-spacing:.02em;font-weight:800;padding:6px 31px;z-index:2;box-shadow:0 3px 8px #0001;white-space:nowrap}.disabled{cursor:not-allowed;filter:saturate(.82)}.disabled .arrow{background:#b8b7b7}.disabled h2{padding-right:5px}
+    .install-area{text-align:center;margin:22px auto 0;max-width:370px}.install-btn{width:100%;display:flex;align-items:center;justify-content:center;gap:11px;padding:16px 20px;border:0;border-radius:18px;background:#ff743f;color:white;font:800 16px Inter,system-ui,sans-serif;box-shadow:0 9px 22px #ff743f38;cursor:pointer}.install-btn svg{width:23px;height:23px}.install-btn:focus-visible{outline:3px solid #222733;outline-offset:3px}.install-help{font-size:12px;color:#77727a;line-height:1.5;margin:10px 0 0}.install-guide{display:none;text-align:left;margin-top:13px;padding:16px;background:#fff;border:1px solid #f4d6c4;border-radius:15px;font-size:13px;line-height:1.65;color:#38333a}.install-guide.show{display:block}.install-guide strong{color:#d85d29}
     footer{display:flex;align-items:center;justify-content:center;gap:12px;margin:30px 0 8px;color:#85848a;font-size:13px;white-space:nowrap}footer:before,footer:after{content:"";height:1px;background:#c9c4c0;flex:1}footer strong{color:#f36b32;font-weight:700}
     @media(min-width:580px){.shell{padding:52px 36px 34px}.grid{gap:20px}.tile{min-height:280px;padding:24px}.art{height:175px}.art svg{max-width:195px;height:170px}.saude{min-height:175px}.saude .art{flex-basis:42%}.saude .art svg{height:150px}.arrow{width:46px;height:46px;flex-basis:46px}.tile h2{font-size:26px}.ribbon{font-size:11px;right:-30px;top:20px}}
     @media(max-width:355px){.shell{padding-inline:12px}.grid{gap:10px}.tile{padding:14px 10px;min-height:205px;border-radius:22px}.art{height:115px}.art svg{height:115px}.arrow{flex-basis:30px;width:30px;height:30px}.tile h2{font-size:15px}.ribbon{font-size:8px}}
@@ -45,6 +50,35 @@
     <div class="tile saude disabled" aria-label="Saúde, em construção"><span class="ribbon">EM CONSTRUÇÃO</span><div class="art" aria-hidden="true"><svg viewBox="0 0 160 145" xmlns="http://www.w3.org/2000/svg"><path d="M73 48C40 8 5 42 23 74q14 24 50 48 36-24 50-48 18-32-16-43-19-5-34 17z" fill="#f55c62"/><path d="M30 74h20l9-18 12 36 11-23h27" fill="none" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><rect x="116" y="49" width="30" height="76" rx="10" fill="#f2a7a6"/><rect x="119" y="43" width="24" height="12" rx="4" fill="#9a7b78"/><rect x="94" y="105" width="16" height="32" rx="8" fill="#e99596" transform="rotate(-30 94 105)"/></svg></div><div class="tile-bottom"><h2>Saúde</h2><span class="arrow" aria-hidden="true">↗</span></div></div>
   </section>
   <footer><span>Criado por <strong>Lumanoids</strong></span></footer>
+  <section class="install-area" aria-label="Instalar no celular">
+    <button class="install-btn" id="installBtn" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/><path d="M9 21v-8h6v8"/></svg>Baixar no celular</button>
+    <p class="install-help">Coloque o Tudo em Dia na tela inicial do seu celular.</p>
+    <div class="install-guide" id="installGuide" role="status" aria-live="polite"></div>
+  </section>
 </main>
+<script>
+  let installPrompt = null;
+  const btn = document.getElementById('installBtn');
+  const guide = document.getElementById('installGuide');
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  const installed = () => window.matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+  window.addEventListener('beforeinstallprompt', event => { event.preventDefault(); installPrompt = event; });
+  window.addEventListener('appinstalled', () => { installPrompt = null; guide.classList.add('show'); guide.textContent = 'Tudo em Dia instalado! Procure o ícone de casa na tela inicial.'; btn.textContent = 'Instalado no celular'; });
+  btn.addEventListener('click', async () => {
+    if (installed()) { guide.innerHTML = 'O <strong>Tudo em Dia</strong> já está aberto como aplicativo.'; }
+    else if (installPrompt) {
+      const prompt = installPrompt; installPrompt = null;
+      await prompt.prompt();
+      const result = await prompt.userChoice;
+      if (result.outcome !== 'accepted') guide.innerHTML = 'Para instalar depois, toque novamente no botão ou use a opção <strong>Instalar aplicativo</strong> do navegador.';
+    } else if (isIOS) {
+      guide.innerHTML = '<strong>Instalar no iPhone:</strong><br>1. Abra esta página no Safari.<br>2. Toque em Compartilhar (quadrado com seta para cima).<br>3. Escolha <strong>Adicionar à Tela de Início</strong> e confirme.';
+    } else {
+      guide.innerHTML = '<strong>Instalar no Android:</strong><br>1. Abra esta página no Chrome.<br>2. Toque no menu ⋮.<br>3. Selecione <strong>Instalar app</strong> ou <strong>Adicionar à tela inicial</strong>.<br>Se estiver no computador, abra o endereço do site no celular.';
+    }
+    guide.classList.add('show');
+  });
+  if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('./sw.js').catch(() => {});
+</script>
 </body>
 </html>
