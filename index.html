@@ -20,8 +20,8 @@
     .shell:before{content:"";position:absolute;width:240px;height:240px;border-radius:50%;background:#ff9c67;top:-160px;left:-95px;z-index:0;opacity:.85}
     header{position:relative;text-align:center;margin:16px 0 30px}h1{font-size:clamp(45px,10vw,76px);font-weight:900;line-height:.98;letter-spacing:-.075em;margin:0}h1 span{display:inline;color:#ff672f;letter-spacing:-.065em}.underline{width:116px;height:7px;background:#ffb27f;border-radius:50%;margin:15px auto 0;transform:rotate(-3deg)}
     .grid{position:relative;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-    .tile{position:relative;min-width:0;min-height:235px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;padding:19px 15px 16px;border-radius:27px;text-decoration:none;color:inherit;box-shadow:0 8px 30px rgba(73,40,24,.035);transition:transform .18s ease,box-shadow .18s ease}
-    a.tile:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(73,40,24,.12)}a.tile:focus-visible{outline:3px solid #f87542;outline-offset:3px}
+    .tile{position:relative;min-width:0;min-height:235px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;padding:19px 15px 16px;border-radius:27px;text-decoration:none;color:inherit;border:1px solid rgba(111,79,62,.13);box-shadow:0 5px 9px rgba(64,39,26,.10),0 14px 25px rgba(64,39,26,.10);transition:transform .18s ease,box-shadow .18s ease}
+    a.tile:hover{transform:translateY(-4px);box-shadow:0 8px 14px rgba(64,39,26,.16),0 18px 30px rgba(64,39,26,.14)}a.tile:focus-visible{outline:3px solid #f87542;outline-offset:3px}
     .contas{background:linear-gradient(135deg,#ffecdf,#ffe5d7)}.compras{background:linear-gradient(135deg,#eff7ed,#e7f3e7)}.metas{background:linear-gradient(135deg,#fff3e9,#fce9dc)}.desejos{background:linear-gradient(135deg,#ffedf0,#ffe2e6)}.saude{background:linear-gradient(135deg,#eaf7ff,#e3f2fc);grid-column:1/-1;min-height:155px;flex-direction:row;align-items:center;gap:12px}
     .art{height:130px;display:grid;place-items:center;filter:drop-shadow(0 12px 8px rgba(70,40,20,.09))}.art svg{width:100%;max-width:145px;height:130px}.saude .art{height:120px;flex:0 0 40%}.saude .art svg{height:120px}
     .tile-bottom{display:flex;align-items:end;justify-content:space-between;gap:5px;width:100%}.tile h2{font-size:clamp(16px,4vw,24px);font-weight:800;letter-spacing:-.05em;line-height:1.12;margin:0;overflow-wrap:break-word}.arrow{flex:0 0 35px;width:35px;height:35px;border-radius:50%;background:#ff743f;color:white;display:grid;place-items:center;box-shadow:0 3px 9px #ff743f35}.arrow svg{width:22px;height:22px}
@@ -38,7 +38,7 @@
       header{margin:9px 0 19px}
       h1{font-size:clamp(27px,8.3vw,39px);letter-spacing:-.065em;line-height:1.13;white-space:nowrap}
       .underline{width:88px;height:4px;margin:7px auto 0}
-      .grid{gap:10px}
+      .grid{gap:13px}
       .tile{min-height:174px;padding:10px 10px 12px;border-radius:19px}
       .art{height:112px;min-height:0}
       .art svg{height:108px;max-width:112px}
@@ -56,7 +56,7 @@
       .install-help{font-size:10px;margin:6px 0 0}
     }
     @media(max-width:355px){
-      .shell{padding-inline:9px}.grid{gap:7px}.tile{min-height:157px;padding:8px;border-radius:16px}
+      .shell{padding-inline:9px}.grid{gap:10px}.tile{min-height:157px;padding:8px;border-radius:16px}
       .art{height:101px}.art svg{height:98px;max-width:103px}.tile h2{font-size:12px}
       .saude{min-height:93px}.saude .art{height:76px}.saude .art svg{height:76px}
       .arrow{width:25px;height:25px;flex-basis:25px}
@@ -64,7 +64,7 @@
     @media(max-height:740px) and (max-width:579px){
       .shell{padding-top:12px}.tile{min-height:155px}.art{height:95px}.art svg{height:94px}
       .saude{min-height:90px}.saude .art{height:72px}.saude .art svg{height:72px}
-      header{margin:4px 0 13px}.grid{gap:8px}
+      header{margin:4px 0 13px}.grid{gap:10px}
     }
     .install-area[hidden]{display:none!important}
   </style>
@@ -73,11 +73,11 @@
 <main class="shell">
   <header><h1>Tudo <span>em Dia</span></h1><div class="underline" aria-hidden="true"></div></header>
   <section class="grid" aria-label="Áreas do Tudo em Dia">
-    <a class="tile contas" href="https://applumanoids.github.io/Carteira/" aria-label="Abrir Contas">
+    <a class="tile contas" href="https://applumanoids.github.io/Carteira/" target="_blank" rel="noopener noreferrer external" aria-label="Abrir Contas">
       <div class="art" aria-hidden="true"><svg viewBox="0 0 160 145" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="w" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#c96a30"/><stop offset="1" stop-color="#8d3c1a"/></linearGradient></defs><rect x="22" y="28" width="105" height="77" rx="13" fill="#b75c2a" transform="rotate(-8 22 28)"/><rect x="31" y="30" width="95" height="68" rx="10" fill="#f8d2ae" transform="rotate(-5 31 30)"/><rect x="17" y="40" width="125" height="80" rx="17" fill="url(#w)"/><path d="M25 52h107" stroke="#efad74" stroke-width="2"/><rect x="104" y="68" width="46" height="29" rx="9" fill="#a54b22"/><circle cx="128" cy="82" r="5" fill="#f5bd58"/><ellipse cx="51" cy="120" rx="25" ry="10" fill="#b85c20"/><rect x="26" y="105" width="50" height="14" rx="7" fill="#efad35"/><ellipse cx="51" cy="105" rx="25" ry="10" fill="#ffd36b"/><circle cx="98" cy="119" r="21" fill="#e8a533"/><circle cx="98" cy="119" r="16" fill="#ffe18c" stroke="#d8912b" stroke-width="2"/><text x="98" y="126" text-anchor="middle" font-size="25" font-weight="800" fill="#b87523">$</text></svg></div>
       <div class="tile-bottom"><h2>Contas</h2><span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16m-7-7 7 7-7 7"/></svg></span></div>
     </a>
-    <a class="tile compras" href="https://applumanoids.github.io/lista-compras/" aria-label="Abrir Lista de Supermercado">
+    <a class="tile compras" href="https://applumanoids.github.io/lista-compras/" target="_blank" rel="noopener noreferrer external" aria-label="Abrir Lista de Supermercado">
       <div class="art" aria-hidden="true"><svg viewBox="0 0 160 145" xmlns="http://www.w3.org/2000/svg"><path d="M44 47Q26 19 51 14q23 7 19 35M72 45Q70 9 92 16q17 13 0 37" fill="#58a443" stroke="#39883c" stroke-width="3"/><path d="M88 47Q112 15 122 37q-2 22-30 24" fill="#77b74d"/><path d="M46 50q10-30 22-10l7 20" fill="#ef9f32"/><circle cx="100" cy="59" r="20" fill="#f46b36"/><path d="M95 40l6-9 5 10" fill="#39883c"/><rect x="18" y="52" width="125" height="65" rx="8" fill="#e3e5e5" stroke="#9fa8ac" stroke-width="5"/><path d="M23 71h115M28 93h108M45 54l10 62m25-62v62m25-62-10 62" stroke="#aeb8ba" stroke-width="6"/><path d="M22 54l-8-15h-8" fill="none" stroke="#909ca0" stroke-width="7" stroke-linecap="round"/><circle cx="45" cy="127" r="9" fill="#59636b"/><circle cx="118" cy="127" r="9" fill="#59636b"/></svg></div>
       <div class="tile-bottom"><h2>Lista de<br>Supermercado</h2><span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16m-7-7 7 7-7 7"/></svg></span></div>
     </a>
