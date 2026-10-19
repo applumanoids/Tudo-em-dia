@@ -18,7 +18,7 @@
     *{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(circle at 0 0,#ffe1d0 0,transparent 22rem),linear-gradient(155deg,#fffaf6,#fff 60%,#fff6f0)}
     .shell{position:relative;max-width:720px;margin:0 auto;padding:42px 20px 28px;overflow:hidden}
     .shell:before{content:"";position:absolute;width:240px;height:240px;border-radius:50%;background:#ff9c67;top:-160px;left:-95px;z-index:0;opacity:.85}
-    header{position:relative;text-align:center;margin:16px 0 30px}h1{font-size:clamp(45px,10vw,76px);font-weight:900;line-height:.98;letter-spacing:-.075em;margin:0}h1 span{display:block;color:#ff672f;letter-spacing:-.065em}.underline{width:116px;height:7px;background:#ffb27f;border-radius:50%;margin:15px auto 0;transform:rotate(-3deg)}
+    header{position:relative;text-align:center;margin:16px 0 30px}h1{font-size:clamp(45px,10vw,76px);font-weight:900;line-height:.98;letter-spacing:-.075em;margin:0}h1 span{display:inline;color:#ff672f;letter-spacing:-.065em}.underline{width:116px;height:7px;background:#ffb27f;border-radius:50%;margin:15px auto 0;transform:rotate(-3deg)}
     .grid{position:relative;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
     .tile{position:relative;min-width:0;min-height:235px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;padding:19px 15px 16px;border-radius:27px;text-decoration:none;color:inherit;box-shadow:0 8px 30px rgba(73,40,24,.035);transition:transform .18s ease,box-shadow .18s ease}
     a.tile:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(73,40,24,.12)}a.tile:focus-visible{outline:3px solid #f87542;outline-offset:3px}
@@ -31,6 +31,42 @@
     @media(min-width:580px){.shell{padding:52px 36px 34px}.grid{gap:20px}.tile{min-height:280px;padding:24px}.art{height:175px}.art svg{max-width:195px;height:170px}.saude{min-height:175px}.saude .art{flex-basis:42%}.saude .art svg{height:150px}.arrow{width:46px;height:46px;flex-basis:46px}.tile h2{font-size:26px}.ribbon{font-size:11px;right:-30px;top:20px}}
     @media(max-width:355px){.shell{padding-inline:12px}.grid{gap:10px}.tile{padding:14px 10px;min-height:205px;border-radius:22px}.art{height:115px}.art svg{height:115px}.arrow{flex-basis:30px;width:30px;height:30px}.tile h2{font-size:15px}.ribbon{font-size:8px}}
     @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+    /* Compacto e responsivo: cinco módulos visíveis em telas pequenas */
+    @media(max-width:579px){
+      .shell{padding:22px 13px 18px;max-width:440px}
+      .shell:before{width:155px;height:155px;top:-112px;left:-72px}
+      header{margin:9px 0 19px}
+      h1{font-size:clamp(27px,8.3vw,39px);letter-spacing:-.065em;line-height:1.13;white-space:nowrap}
+      .underline{width:88px;height:4px;margin:7px auto 0}
+      .grid{gap:10px}
+      .tile{min-height:174px;padding:10px 10px 12px;border-radius:19px}
+      .art{height:112px;min-height:0}
+      .art svg{height:108px;max-width:112px}
+      .tile h2{font-size:clamp(12px,3.8vw,16px);letter-spacing:-.045em}
+      .arrow{width:28px;height:28px;flex-basis:28px}
+      .arrow svg{width:18px;height:18px}
+      .ribbon{font-size:7px;top:12px;right:-32px;padding:5px 28px}
+      .saude{min-height:103px;padding:9px 14px;gap:8px}
+      .saude .art{height:87px;flex-basis:37%}
+      .saude .art svg{height:86px;max-width:118px}
+      footer{margin:17px 0 9px;font-size:11px}
+      .install-area{margin:12px auto 0;max-width:280px}
+      .install-btn{padding:11px 14px;border-radius:13px;font-size:13px;gap:8px}
+      .install-btn svg{height:18px;width:18px}
+      .install-help{font-size:10px;margin:6px 0 0}
+    }
+    @media(max-width:355px){
+      .shell{padding-inline:9px}.grid{gap:7px}.tile{min-height:157px;padding:8px;border-radius:16px}
+      .art{height:101px}.art svg{height:98px;max-width:103px}.tile h2{font-size:12px}
+      .saude{min-height:93px}.saude .art{height:76px}.saude .art svg{height:76px}
+      .arrow{width:25px;height:25px;flex-basis:25px}
+    }
+    @media(max-height:740px) and (max-width:579px){
+      .shell{padding-top:12px}.tile{min-height:155px}.art{height:95px}.art svg{height:94px}
+      .saude{min-height:90px}.saude .art{height:72px}.saude .art svg{height:72px}
+      header{margin:4px 0 13px}.grid{gap:8px}
+    }
+    .install-area[hidden]{display:none!important}
   </style>
 </head>
 <body>
@@ -59,17 +95,29 @@
 <script>
   let installPrompt = null;
   const btn = document.getElementById('installBtn');
+  const installArea = document.querySelector('.install-area');
   const guide = document.getElementById('installGuide');
   const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
   const installed = () => window.matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
-  window.addEventListener('beforeinstallprompt', event => { event.preventDefault(); installPrompt = event; });
-  window.addEventListener('appinstalled', () => { installPrompt = null; guide.classList.add('show'); guide.textContent = 'Tudo em Dia instalado! Procure o ícone de casa na tela inicial.'; btn.textContent = 'Instalado no celular'; });
+  const refreshInstallVisibility = () => {
+    // Em modo aplicativo, o botão não deve aparecer.
+    installArea.hidden = installed() || localStorage.getItem('tudoEmDiaInstalled') === 'yes';
+  };
+  refreshInstallVisibility();
+  window.addEventListener('beforeinstallprompt', event => {
+    event.preventDefault(); installPrompt = event;
+    // Se o navegador voltar a oferecer a instalação, não há instalação detectada neste contexto.
+    localStorage.removeItem('tudoEmDiaInstalled'); refreshInstallVisibility();
+  });
+  window.addEventListener('appinstalled', () => { installPrompt = null; localStorage.setItem('tudoEmDiaInstalled','yes'); refreshInstallVisibility(); });
+  window.matchMedia('(display-mode: standalone)').addEventListener?.('change', refreshInstallVisibility);
   btn.addEventListener('click', async () => {
     if (installed()) { guide.innerHTML = 'O <strong>Tudo em Dia</strong> já está aberto como aplicativo.'; }
     else if (installPrompt) {
       const prompt = installPrompt; installPrompt = null;
       await prompt.prompt();
       const result = await prompt.userChoice;
+      if (result.outcome === 'accepted') { localStorage.setItem('tudoEmDiaInstalled','yes'); refreshInstallVisibility(); }
       if (result.outcome !== 'accepted') guide.innerHTML = 'Para instalar depois, toque novamente no botão ou use a opção <strong>Instalar aplicativo</strong> do navegador.';
     } else if (isIOS) {
       guide.innerHTML = '<strong>Instalar no iPhone:</strong><br>1. Abra esta página no Safari.<br>2. Toque em Compartilhar (quadrado com seta para cima).<br>3. Escolha <strong>Adicionar à Tela de Início</strong> e confirme.';
