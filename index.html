@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#fffaf6">
+  <meta name="description" content="Tudo em Dia: seu espaço para organizar contas, compras, metas, desejos e saúde.">
+  <title>Tudo em Dia | Lumanoids</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#222733;background:#fffaf6;font-synthesis:none}
+    *{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(circle at 0 0,#ffe1d0 0,transparent 22rem),linear-gradient(155deg,#fffaf6,#fff 60%,#fff6f0)}
+    .shell{position:relative;max-width:720px;margin:0 auto;padding:42px 20px 28px;overflow:hidden}
+    .shell:before{content:"";position:absolute;width:240px;height:240px;border-radius:50%;background:#ff9c67;top:-160px;left:-95px;z-index:0;opacity:.85}
+    header{position:relative;text-align:center;margin:16px 0 30px}h1{font-size:clamp(45px,10vw,76px);font-weight:900;line-height:.98;letter-spacing:-.075em;margin:0}h1 span{display:block;color:#ff672f;letter-spacing:-.065em}.underline{width:116px;height:7px;background:#ffb27f;border-radius:50%;margin:15px auto 0;transform:rotate(-3deg)}
+    .grid{position:relative;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+    .tile{position:relative;min-width:0;min-height:235px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;padding:19px 15px 16px;border-radius:27px;text-decoration:none;color:inherit;box-shadow:0 8px 30px rgba(73,40,24,.035);transition:transform .18s ease,box-shadow .18s ease}
+    a.tile:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(73,40,24,.12)}a.tile:focus-visible{outline:3px solid #f87542;outline-offset:3px}
+    .contas{background:linear-gradient(135deg,#ffecdf,#ffe5d7)}.compras{background:linear-gradient(135deg,#eff7ed,#e7f3e7)}.metas{background:linear-gradient(135deg,#fff3e9,#fce9dc)}.desejos{background:linear-gradient(135deg,#ffedf0,#ffe2e6)}.saude{background:linear-gradient(135deg,#eaf7ff,#e3f2fc);grid-column:1/-1;min-height:155px;flex-direction:row;align-items:center;gap:12px}
+    .art{height:130px;display:grid;place-items:center;filter:drop-shadow(0 12px 8px rgba(70,40,20,.09))}.art svg{width:100%;max-width:145px;height:130px}.saude .art{height:120px;flex:0 0 40%}.saude .art svg{height:120px}
+    .tile-bottom{display:flex;align-items:end;justify-content:space-between;gap:5px;width:100%}.tile h2{font-size:clamp(16px,4vw,24px);font-weight:800;letter-spacing:-.05em;line-height:1.12;margin:0;overflow-wrap:break-word}.arrow{flex:0 0 35px;width:35px;height:35px;border-radius:50%;background:#ff743f;color:white;display:grid;place-items:center;box-shadow:0 3px 9px #ff743f35}.arrow svg{width:22px;height:22px}
+    .ribbon{position:absolute;top:17px;right:-32px;transform:rotate(35deg);background:#e56c43;color:white;font-size:9px;letter-spacing:.02em;font-weight:800;padding:6px 31px;z-index:2;box-shadow:0 3px 8px #0001;white-space:nowrap}.disabled{cursor:not-allowed;filter:saturate(.82)}.disabled .arrow{background:#b8b7b7}.disabled h2{padding-right:5px}
+    footer{display:flex;align-items:center;justify-content:center;gap:12px;margin:30px 0 8px;color:#85848a;font-size:13px;white-space:nowrap}footer:before,footer:after{content:"";height:1px;background:#c9c4c0;flex:1}footer strong{color:#f36b32;font-weight:700}
+    @media(min-width:580px){.shell{padding:52px 36px 34px}.grid{gap:20px}.tile{min-height:280px;padding:24px}.art{height:175px}.art svg{max-width:195px;height:170px}.saude{min-height:175px}.saude .art{flex-basis:42%}.saude .art svg{height:150px}.arrow{width:46px;height:46px;flex-basis:46px}.tile h2{font-size:26px}.ribbon{font-size:11px;right:-30px;top:20px}}
+    @media(max-width:355px){.shell{padding-inline:12px}.grid{gap:10px}.tile{padding:14px 10px;min-height:205px;border-radius:22px}.art{height:115px}.art svg{height:115px}.arrow{flex-basis:30px;width:30px;height:30px}.tile h2{font-size:15px}.ribbon{font-size:8px}}
+    @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+  </style>
+</head>
+<body>
+<main class="shell">
+  <header><h1>Tudo <span>em Dia</span></h1><div class="underline" aria-hidden="true"></div></header>
+  <section class="grid" aria-label="Áreas do Tudo em Dia">
+    <a class="tile contas" href="https://applumanoids.github.io/Carteira/" aria-label="Abrir Contas">
+      <div class="art" aria-hidden="true"><svg viewBox="0 0 160 145" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="w" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#c96a30"/><stop offset="1" stop-color="#8d3c1a"/></linearGradient></defs><rect x="22" y="28" width="105" height="77" rx="13" fill="#b75c2a" transform="rotate(-8 22 28)"/><rect x="31" y="30" width="95" height="68" rx="10" fill="#f8d2ae" transform="rotate(-5 31 30)"/><rect x="17" y="40" width="125" height="80" rx="17" fill="url(#w)"/><path d="M25 52h107" stroke="#efad74" stroke-width="2"/><rect x="104" y="68" width="46" height="29" rx="9" fill="#a54b22"/><circle cx="128" cy="82" r="5" fill="#f5bd58"/><ellipse cx="51" cy="120" rx="25" ry="10" fill="#b85c20"/><rect x="26" y="105" width="50" height="14" rx="7" fill="#efad35"/><ellipse cx="51" cy="105" rx="25" ry="10" fill="#ffd36b"/><circle cx="98" cy="119" r="21" fill="#e8a533"/><circle cx="98" cy="119" r="16" fill="#ffe18c" stroke="#d8912b" stroke-width="2"/><text x="98" y="126" text-anchor="middle" font-size="25" font-weight="800" fill="#b87523">$</text></svg></div>
+      <div class="tile-bottom"><h2>Contas</h2><span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16m-7-7 7 7-7 7"/></svg></span></div>
+    </a>
+    <a class="tile compras" href="https://applumanoids.github.io/lista-compras/" aria-label="Abrir Lista de Supermercado">
+      <div class="art" aria-hidden="true"><svg viewBox="0 0 160 145" xmlns="http://www.w3.org/2000/svg"><path d="M44 47Q26 19 51 14q23 7 19 35M72 45Q70 9 92 16q17 13 0 37" fill="#58a443" stroke="#39883c" stroke-width="3"/><path d="M88 47Q112 15 122 37q-2 22-30 24" fill="#77b74d"/><path d="M46 50q10-30 22-10l7 20" fill="#ef9f32"/><circle cx="100" cy="59" r="20" fill="#f46b36"/><path d="M95 40l6-9 5 10" fill="#39883c"/><rect x="18" y="52" width="125" height="65" rx="8" fill="#e3e5e5" stroke="#9fa8ac" stroke-width="5"/><path d="M23 71h115M28 93h108M45 54l10 62m25-62v62m25-62-10 62" stroke="#aeb8ba" stroke-width="6"/><path d="M22 54l-8-15h-8" fill="none" stroke="#909ca0" stroke-width="7" stroke-linecap="round"/><circle cx="45" cy="127" r="9" fill="#59636b"/><circle cx="118" cy="127" r="9" fill="#59636b"/></svg></div>
+      <div class="tile-bottom"><h2>Lista de<br>Supermercado</h2><span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16m-7-7 7 7-7 7"/></svg></span></div>
+    </a>
+    <div class="tile metas disabled" aria-label="Metas, em construção"><span class="ribbon">EM CONSTRUÇÃO</span><div class="art" aria-hidden="true"><svg viewBox="0 0 160 145" xmlns="http://www.w3.org/2000/svg"><circle cx="79" cy="76" r="58" fill="#f67940"/><circle cx="79" cy="76" r="43" fill="#fff4ec"/><circle cx="79" cy="76" r="31" fill="#f67940"/><circle cx="79" cy="76" r="18" fill="#fff4ec"/><circle cx="79" cy="76" r="7" fill="#f67940"/><path d="M80 76l56-55" stroke="#a34b23" stroke-width="7" stroke-linecap="round"/><path d="M136 21l-2 24-16-8 0-17z" fill="#ff884d"/><path d="M136 21l-23 2 7 16 16 0z" fill="#e76532"/></svg></div><div class="tile-bottom"><h2>Metas</h2><span class="arrow" aria-hidden="true">↗</span></div></div>
+    <div class="tile desejos disabled" aria-label="Desejos, em construção"><span class="ribbon">EM CONSTRUÇÃO</span><div class="art" aria-hidden="true"><svg viewBox="0 0 160 145" xmlns="http://www.w3.org/2000/svg"><path d="M39 47h79l9 78H30z" fill="#f49a8f"/><path d="M53 50V31q0-20 20-20t20 20v19" fill="none" stroke="#d8776f" stroke-width="7"/><path d="M62 81q10-13 20 0 10-13 20 0 3 10-20 25-23-15-20-25" fill="#ffe1dd"/><rect x="93" y="94" width="50" height="39" rx="5" fill="#f9cf9d"/><path d="M115 94v39M93 110h50" stroke="#dc963e" stroke-width="9"/><path d="M117 93q-30-12-15-20 10-3 15 20m0 0q26-22 31-9 3 10-31 9" fill="none" stroke="#dc963e" stroke-width="5"/><path d="M21 32l4-12 4 12 12 4-12 4-4 12-4-12-12-4zM127 36l3-9 3 9 9 3-9 3-3 9-3-9-9-3z" fill="#f9bc43"/></svg></div><div class="tile-bottom"><h2>Desejos</h2><span class="arrow" aria-hidden="true">↗</span></div></div>
+    <div class="tile saude disabled" aria-label="Saúde, em construção"><span class="ribbon">EM CONSTRUÇÃO</span><div class="art" aria-hidden="true"><svg viewBox="0 0 160 145" xmlns="http://www.w3.org/2000/svg"><path d="M73 48C40 8 5 42 23 74q14 24 50 48 36-24 50-48 18-32-16-43-19-5-34 17z" fill="#f55c62"/><path d="M30 74h20l9-18 12 36 11-23h27" fill="none" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><rect x="116" y="49" width="30" height="76" rx="10" fill="#f2a7a6"/><rect x="119" y="43" width="24" height="12" rx="4" fill="#9a7b78"/><rect x="94" y="105" width="16" height="32" rx="8" fill="#e99596" transform="rotate(-30 94 105)"/></svg></div><div class="tile-bottom"><h2>Saúde</h2><span class="arrow" aria-hidden="true">↗</span></div></div>
+  </section>
+  <footer><span>Criado por <strong>Lumanoids</strong></span></footer>
+</main>
+</body>
+</html>
