@@ -7,7 +7,9 @@
   <meta name="description" content="Tudo em Dia: seu espaço para organizar contas, compras, metas, desejos e saúde.">
   <title>Tudo em Dia | Lumanoids</title>
   <link rel="manifest" href="./manifest.webmanifest">
-  <link rel="apple-touch-icon" href="./icon-192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="Tudo em Dia">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -122,6 +124,7 @@
   const installArea = document.querySelector('.install-area');
   const guide = document.getElementById('installGuide');
   const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  const isSafari = /Safari/i.test(navigator.userAgent) && !/CriOS|FxiOS|EdgiOS|OPiOS|DuckDuckGo/i.test(navigator.userAgent);
   const installed = () => window.matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
   const refreshInstallVisibility = () => {
     // Em modo aplicativo, o botão não deve aparecer.
@@ -135,16 +138,19 @@
   });
   window.addEventListener('appinstalled', () => { installPrompt = null; localStorage.setItem('tudoEmDiaInstalled','yes'); refreshInstallVisibility(); });
   window.matchMedia('(display-mode: standalone)').addEventListener?.('change', refreshInstallVisibility);
+  window.addEventListener('pageshow', refreshInstallVisibility);
   btn.addEventListener('click', async () => {
     if (installed()) { guide.innerHTML = 'O <strong>Tudo em Dia</strong> já está aberto como aplicativo.'; }
     else if (installPrompt) {
       const prompt = installPrompt; installPrompt = null;
       await prompt.prompt();
       const result = await prompt.userChoice;
-      if (result.outcome === 'accepted') { localStorage.setItem('tudoEmDiaInstalled','yes'); refreshInstallVisibility(); }
+      if (result.outcome === 'accepted') { /* O evento appinstalled confirma a instalação quando disponível. */ }
       if (result.outcome !== 'accepted') guide.innerHTML = 'Para instalar depois, toque novamente no botão ou use a opção <strong>Instalar aplicativo</strong> do navegador.';
     } else if (isIOS) {
-      guide.innerHTML = '<strong>Instalar no iPhone:</strong><br>1. Abra esta página no Safari.<br>2. Toque em Compartilhar (quadrado com seta para cima).<br>3. Escolha <strong>Adicionar à Tela de Início</strong> e confirme.';
+      guide.innerHTML = isSafari
+        ? '<strong>Instalar no iPhone (Safari):</strong><br>1. Toque em <strong>Compartilhar</strong> (quadrado com seta para cima).<br>2. Role as opções e toque em <strong>Adicionar à Tela de Início</strong> (em algumas versões, em Mais ou no menu de ações).<br>3. Se aparecer <strong>Abrir como App</strong>, mantenha ativado; depois toque em <strong>Adicionar</strong>.<br>4. Abra o ícone de casa na Tela de Início.'
+        : '<strong>Instalar no iPhone:</strong><br>1. Copie o endereço desta página e abra-o no <strong>Safari</strong>.<br>2. Toque em <strong>Compartilhar</strong> e depois em <strong>Adicionar à Tela de Início</strong>.<br>3. Confirme em <strong>Adicionar</strong> e abra o ícone na Tela de Início.';
     } else {
       guide.innerHTML = '<strong>Instalar no Android:</strong><br>1. Abra esta página no Chrome.<br>2. Toque no menu ⋮.<br>3. Selecione <strong>Instalar app</strong> ou <strong>Adicionar à tela inicial</strong>.<br>Se estiver no computador, abra o endereço do site no celular.';
     }

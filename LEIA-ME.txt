@@ -1,0 +1,11 @@
+TUDO EM DIA — Lumanoids
+
+Publique TODOS os arquivos desta pasta na raiz do repositório GitHub Pages Tudo-em-dia.
+
+Android: abra no Chrome e toque em Baixar no celular, ou use o menu Instalar aplicativo.
+iPhone: abra no Safari, toque Compartilhar > Adicionar à Tela de Início > Adicionar. O iOS não permite disparar a instalação automaticamente por botão.
+
+O ícone de casa está em apple-touch-icon.png (iOS) e icon-192.png/icon-512.png (Android).
+O botão de instalação fica oculto quando o app é aberto no modo instalado. O Safari normal não consegue detectar de forma confiável se o ícone já foi adicionado à tela inicial.
+
+Se o aplicativo já estiver instalado, feche e reabra após a publicação para receber a versão nova.
